@@ -22,15 +22,27 @@ public class PesquisaOperacional {
                           {50,40,-1,25},
                           {45,40,20,-1},
                          };
-        int cidadeInicial = 0;
-        Vizinho v = new Vizinho(Matriz,cidadeInicial);
-        System.out.println("------------------------------------");
-        String t="";
-        for(int i=0;i<v.getCaminho().length;i++)
+        int[] pesos = new int[Matriz[0].length];
+        
+        for(int i=0;i<Matriz[0].length;i++)
         {
-            t+="["+v.getCaminho()[i]+"]";
+            int cidadeInicial = i;
+            Vizinho v = new Vizinho(Matriz,cidadeInicial);
+            System.out.println("---------------- Cidade: "+i+" -------------------");
+            String t="";
+            for(int x=0;x<v.getCaminho().length;x++)
+            {
+                t+="["+v.getCaminho()[x]+"]";
+            }
+            System.out.println(t);
+            pesos[i] = v.getPesoCaminho(v.getCaminho());
+            System.out.println(">Peso: "+pesos[i]);
         }
-        System.out.println(t);
+        
+        System.out.println("---------------- Melhor Cidade -------------------");
+        System.out.println("> "+Vizinho.getMelhorCidade(pesos));
+        
+        Vizinho vi = new Vizinho(Matriz,Vizinho.getMelhorCidade(pesos));
         
     }
     
