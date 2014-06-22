@@ -67,7 +67,6 @@ public class Vizinho {
             }
             m++;
         }
-        
         return min;
     }
     
@@ -79,7 +78,7 @@ public class Vizinho {
         {
             peso+=this.Matriz[Caminho[i]][Caminho[i+1]];
         }
-        peso+=this.Matriz[Caminho.length-1][Caminho[0]];
+        peso+=this.Matriz[Caminho[Caminho.length-1]][Caminho[0]];
         return peso;
     }
     
@@ -110,7 +109,6 @@ public class Vizinho {
             }
             i++;
         }
-        
         return false;
     }
 
@@ -135,5 +133,4 @@ public class Vizinho {
     public int[] getCaminho() {
         return caminho;
     }
-    
 }
