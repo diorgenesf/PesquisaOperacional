@@ -6,6 +6,8 @@
 
 package pesquisaoperacional;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Diorgenes
@@ -28,8 +30,7 @@ public class Vizinho {
         int cidadeAtual = CidadeInicial;
         
         int i = 1;
-        while (i < caminho.length) {
-                            
+        while (i < caminho.length) {                            
             // encontro a próxima cidade                  
             int proximaCidade = getProximaCidade(MatrizDistancia[cidadeAtual]);
             System.out.println("Proxima Cidade: "+proximaCidade);
@@ -48,23 +49,23 @@ public class Vizinho {
     public int[] Inversao()
     {
         int[] min = this.caminho;
-        
-        int m = 1;
-        int n = this.caminho.length;        
+        int m = 2;
+        int n = this.caminho.length;
         
         while((n-m)>0)
         {
-            int[] aux = this.caminho;
-            for(int i=1;(m+i)<this.caminho.length;i++)
+            int[] aux = new int[caminho.length];
+            System.arraycopy(caminho, 0, aux, 0, caminho.length);
+            for(int i=1;(m+i)<this.caminho.length-1;i++)
             {
                 int w = aux[m];
-                aux[m] = aux[m+i];
-                aux[m+i] = w;
+                aux[m] = aux[i+m];
+                aux[i+m] = w;
             }
             if(this.getPesoCaminho(min)>this.getPesoCaminho(aux))
             {
-                min = aux;
-            }
+                System.arraycopy(aux, 0, min, 0, caminho.length);
+            }                
             m++;
         }
         return min;
@@ -77,6 +78,10 @@ public class Vizinho {
         for(int i=0;i<Caminho.length-1;i++)
         {
             peso+=this.Matriz[Caminho[i]][Caminho[i+1]];
+        }
+        if(this.Matriz[Caminho[Caminho.length-1]][Caminho[0]]==-1)
+        {
+            return Integer.MAX_VALUE;
         }
         peso+=this.Matriz[Caminho[Caminho.length-1]][Caminho[0]];
         return peso;
