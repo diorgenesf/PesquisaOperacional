@@ -54,12 +54,18 @@ public class Vizinho {
         
         while((n-m)>0)
         {
-            for(int i=1;i<this.caminho.length;i++)
+            int[] aux = this.caminho;
+            for(int i=1;(m+i)<this.caminho.length;i++)
             {
-                int[] aux = this.caminho;
-                
-                //if(this.getPesoCaminho(min)>this.getCaminho(this.))
+                int w = aux[m];
+                aux[m] = aux[m+i];
+                aux[m+i] = w;
             }
+            if(this.getPesoCaminho(min)>this.getPesoCaminho(aux))
+            {
+                min = aux;
+            }
+            m++;
         }
         
         return min;

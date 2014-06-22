@@ -43,6 +43,14 @@ public class PesquisaOperacional {
         System.out.println("> "+Vizinho.getMelhorCidade(pesos));
         
         Vizinho vi = new Vizinho(Matriz,Vizinho.getMelhorCidade(pesos));
+        System.out.println("---------------- Inversão -------------------");
+        String t="";
+        for(int x=0;x<vi.Inversao().length;x++)
+        {
+            t+="["+vi.Inversao()[x]+"]";
+        }
+        System.out.println(t);
+        System.out.println("Peso: "+vi.getPesoCaminho(vi.Inversao()));
         
     }
     
